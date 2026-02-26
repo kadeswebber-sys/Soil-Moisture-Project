@@ -1,0 +1,24 @@
+const int motorPin = 8;
+int soilreader = A0;
+int threshold = 600;
+void setup()
+{
+  pinMode(motorPin, OUTPUT);
+  pinMode(soilreader, INPUT);
+  Serial.begin(9600);
+}
+void loop(){
+  int soilVal = analogRead(soilreader);
+  Serial.println(soilVal);
+  if( soilVal > threshold){
+    digitalWrite(motorPin, HIGH);
+    delay(3000);
+    analogWrite(motorPin, LOW);
+    delay(2000);
+  }
+  else{
+  analogWrite(motorPin, LOW);
+  }
+  delay(100);
+}
+
